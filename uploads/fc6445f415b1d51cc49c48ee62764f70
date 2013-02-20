@@ -1,0 +1,44 @@
+<?php 
+include_once("config.php");
+$sql = "SELECT DISTINCT job_company_name FROM job WHERE job_active='1' order by job_company_name asc";
+$r = mysql_query($sql)or die(mysql_error()."<b>Query:</b><br>___<br>$sql<br>");	
+$rows=mysql_num_rows($r);
+if($rows){
+	$a=mysql_fetch_rowsarr($r);
+}
+
+//myprint_r($a);
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<?php include_once('inc.head.php')?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<div id="mid">
+  <?php include_once('top.php'); ?>
+  <div id="midleft">
+    <div id="greenbgtop"></div>
+    <div id="greenbgmid">
+      <div id="register">
+        <h2>All Recruiters</h2>
+        <div id="recruiter_list"> 
+        <?php 
+			
+			foreach($a as $company){
+				echo "<a href='index.php?pageType=search&company_name[]=".$company[job_company_name]."'>".$company[job_company_name]."</a><br>";
+			}		
+		?>
+        </div>
+      </div>
+    </div>
+    <div id="greenbgbottom"></div>
+  </div>
+  <div id="midgap"></div>
+  <!-- Mid right Part Start here -->
+  <?php include('snippets/common/inc.template_right.php');?>
+  <?php include_once('footer.php');?>
+</div>
+</body>
+</html>

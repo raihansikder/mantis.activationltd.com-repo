@@ -1,0 +1,102 @@
+<?php 
+$job_id=$_REQUEST[job_id];
+$sql = "select * from job where job_id='$job_id' AND job_active='1' ";
+//echo $q_filtered;
+$r=mysql_query($sql) or die(mysql_error()."<br>$sql<br>");
+$rows = mysql_num_rows($r);
+if ($rows > 0) {
+	$a_job = mysql_fetch_assoc($r);
+}
+?>
+
+<div id="mainmid"> 
+  <!-- Mid Left Part Start here -->
+  <div id="midleft">
+    <div id="content">
+      <div class="toplink"><a href="index.php">Home</a> > <a href="index.php">Recruitment Sectors</a> > <a href="index.php?pageType=search&sector_name[]=<?=$a_job[job_sector]?>"><?=$a_job[job_sector];?></a></div>
+      <h1><?php echo $a_job[job_title];?></h1>
+      <?php 
+				if((strlen($_SESSION[current_user_id])&&$_SESSION[current_user_id]==$job[job_account_id])
+					||$_SESSION[current_user_type_name]=='Superadmin' 
+					|| $_SESSION[current_user_type_name]=='Admin'){
+					echo "<a href='postjob.php?param=edit&job_id=$job_id' class='button FloatR'>Edit</a>";
+				}
+			
+		  ?>
+      <div id="greenbgtop"></div>
+      <div id="greenbgmid">
+        <div class="text1">
+        <!-- Job posted date starts-->
+        Date Posted: <?php echo date('d-M-Y', strtotime($a_job[job_start_date]));?><br>
+        <!-- Job posted date ends-->
+        <!-- Location starts-->
+		Location:
+		<?php //echo $a_job[job_location];				
+		echo parseJobDescription($a_job[job_location], $a_job[job_source])."<br />";
+		if($a_job[job_county]!='Not available'){echo "County - ".$a_job[job_county]."<br />";}
+		
+		?>
+        <!-- Location ends-->
+        
+        Salary:  Minimum - <?php echo $a_job[job_salary_range_min];?>, Maximum - <?php echo $a_job[job_salary_range_max];?>GBP 
+          <?php 
+		  if(strlen($a_job[job_salary_per])){echo " per ".$a_job[job_salary_per];}
+		  if(strlen($a_job[job_ote_text])){echo " + OTE ".$a_job[job_ote_text];}
+		  ?>
+          
+          </div>
+        <div class="text2">
+          	
+        </div>
+        <div class="text3"><a href="index.php?pageType=search&company_name[]=<?= $a_job[job_company_name];?>" title="see all current job vacancies from <?= $a_job[job_company_name];?>">
+        <img src="<?php 
+		if(strlen($a_job[job_company_logo])){echo $a_job[job_company_logo];}
+		else echo "images/default_job_logo.jpg"; ?>" alt="<?= $a_job[job_company_name];?>" style="width:112px;" title="<?= $a_job[job_company_name];?>"/>
+        </a>
+        </div>
+      </div>
+      <div id="greenbgbottom"></div>
+      <div class="gappp"></div>
+      <div id="greenbgtop1"></div>
+      <div id="greenbgmid1">
+	  <?php 
+	  	echo parseJobDescription($a_job[job_description], $a_job[job_source])."<br /><br />";
+	  	
+		if(strlen($a_job[job_activity])){
+			echo "<b>ACTIVITY</b><br>";
+			echo parseJobDescription($a_job[job_activity], $a_job[job_source])."<br /><br />";
+		}
+		if(strlen($a_job[job_objectives])){
+			echo "<b>OBJECTIVES</b><br>";
+			echo parseJobDescription($a_job[job_objectives], $a_job[job_source])."<br /><br />";
+		}
+		if(strlen($a_job[job_experience])){
+			echo "<b>EXPERIENCE</b><br>";
+			echo parseJobDescription($a_job[job_experience], $a_job[job_source])."<br /><br />";
+		}
+		 
+		if(strlen($a_job[job_hours])){echo "<b>HOURS</b><br>".$a_job[job_hours]."<br /><br />";}
+		if(strlen($a_job[job_ote_text])){echo "<b>HOLIDAYS</b><br>".$a_job[job_holidays]."<br /><br />";}
+		if(strlen($a_job[job_type])){echo "<b>JOB TYPE</b><br>".$a_job[job_type]."<br /><br />";}
+		//if(strlen($a_job[job_sector])){echo "<b>Sector</b><br>".$a_job[job_sector]."<br /><br />";}
+		//if(strlen($a_job[job_number_of_vacancies])){echo "<b>No. of Vacancies</b><br>".$a_job[job_number_of_vacancies]."<br /><br />";}
+		
+		
+	  ?><br />
+        <br />
+      </div>
+      <div id="bottomimglinsks"><a href="<?php echo urldecode($a_job[job_url]);?>" <?php if($a_job[job_source]=='CV-Library'){echo " target='_blank' ";}?>><img src="images/apply-now.jpg" alt="" border="0" /></a><img src="images/bb.jpg" alt="" border="0" /><a href="#"><img src="images/email-this-job.jpg" alt="" border="0" /></a><a href="#"><img src="images/facebook.jpg" alt="" border="0" /></a><a href="#"><img src="images/tweet.jpg" alt="" border="0" /></a></div>
+    </div>
+  </div>
+  <!-- Mid Left Part Close here -->
+  <div id="midgap"></div>
+  <!-- Mid right Part Start here -->
+  <?php include('snippets/common/inc.template_right.php');?>
+  <!-- Mid right Part Close here --> 
+</div>
+
+<script>
+	$('title').html("<?=$a_job[job_title];?> job vacancy in <?=$a_job[job_location];?> – <?=$a_job[job_sector];?> jobs & vacancies on Field Recruitment");
+	$('meta[name=keywords]').attr('content','<?=$a_job[job_title];?>, <?=$a_job[job_location];?>, <?=$a_job[job_sector];?>, jobs, vacancies, field recruitment');
+	$('meta[name=description]').attr('content','<?=$a_job[job_title];?> vacancy in <?=$a_job[job_location];?>.  Upload your CV and apply to Field Recruitment, providing <?=$a_job[job_sector];?> recruitment in <?=$a_job[job_location];?>. Apply online now!');
+</script>

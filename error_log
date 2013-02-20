@@ -1,0 +1,3 @@
+[05-Feb-2013 03:57:58] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/mantis/public_html/config_defaults_inc.php on line 3902
+[05-Feb-2013 03:57:58] PHP Parse error:  syntax error, unexpected $end, expecting ')' in /home/mantis/public_html/config_defaults_inc.php on line 3902
+[17-Feb-2013 01:16:39] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 254812161 bytes) in /home/mantis/public_html/plugins/Source/Source.FilterAPI.php on line 607
