@@ -330,7 +330,7 @@
 	 * the sender name, part of 'From: ' header in emails
 	 * @global string $g_from_name
 	 */
-	$g_from_name			= 'Activation - Mantis ';
+	$g_from_name			= 'Mantis ';
 
 	/**
 	 * the return address for bounced mail
@@ -757,7 +757,7 @@
 	 * Re-authentication required for admin areas
 	 * @global int $g_reauthentication
 	 */
-	$g_reauthentication		= ON;
+	$g_reauthentication		= OFF;
 
 	/**
 	 *
@@ -771,7 +771,7 @@
 	 * in the future.
 	 * @global int $g_enable_project_documentation
 	 */
-	$g_enable_project_documentation	= ON;
+	$g_enable_project_documentation	= OFF;
 
 	/**
 	 * Display another instance of the menu at the bottom.  The top menu will still remain.
@@ -941,7 +941,7 @@
 	 * the updated gravatar images to show on sites
 	 * @global int $g_show_avatar
 	 */
-	$g_show_avatar = OFF;
+	$g_show_avatar = ON;
 
 	/**
 	 * Only users above this threshold will have their avatar shown
@@ -1226,7 +1226,7 @@
 	 * in seconds
 	 * @global int $g_default_redirect_delay
 	 */
-	$g_default_redirect_delay		= 2;
+	$g_default_redirect_delay		= 0;
 
 	/**
 	 *
