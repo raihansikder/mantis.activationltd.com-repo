@@ -2533,7 +2533,7 @@
 	 * Set to ON if you wish to limit reporters to only viewing bugs that they report.
 	 * @global int $g_limit_reporters
 	 */
-	$g_limit_reporters			= OFF;
+	$g_limit_reporters			= OFF; 
 
 	/**
 	 * close immediately
