@@ -312,31 +312,31 @@
 	 * Administrator Email address
 	 * @global string $g_administrator_email
 	 */
-	$g_administrator_email	= 'raihan.act@gmail.com';
+	$g_administrator_email	= 'noreply@mantis.com';
 
 	/**
 	 * Webmaster email
 	 * @global string $g_webmaster_email
 	 */
-	$g_webmaster_email		= 'raihan.act@gmail.com';
+	$g_webmaster_email		= 'noreply@mantis.com';
 
 	/**
 	 * the sender email, part of 'From: ' header in emails
 	 * @global string $g_from_email
 	 */
- 	$g_from_email			= 'noreply@mantis.activationltd.com';
+ 	$g_from_email			= 'noreply@mantis.com';
 
 	/**
 	 * the sender name, part of 'From: ' header in emails
 	 * @global string $g_from_name
 	 */
-	$g_from_name			= 'Mantis ';
+	$g_from_name			= '[Ticket]';
 
 	/**
 	 * the return address for bounced mail
 	 * @global string $g_return_path_email
 	 */
-	$g_return_path_email	= 'raihan.act@gmail.com';
+	$g_return_path_email	= 'admin@testserver001.com';
 
 	/**
 	 * Allow email notification.
