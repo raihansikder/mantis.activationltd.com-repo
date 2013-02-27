@@ -532,7 +532,7 @@
 	 * which triggers notifications.  This slows user performance.
 	 * @global int $g_email_send_using_cronjob
 	 */
-	$g_email_send_using_cronjob = ON;
+	$g_email_send_using_cronjob = OFF;
 
 	/**
 	 * Specify whether e-mails should be sent with the category set or not.  This is tested
