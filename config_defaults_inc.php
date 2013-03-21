@@ -880,7 +880,7 @@
 	 * If set to ON it will printed below the status colour legend.
 	 * @global int $g_status_percentage_legend
 	 */
-	$g_status_percentage_legend = OFF;
+	$g_status_percentage_legend = ON;
 
 	/**
 	 * Position of the filter box, can be: POSITION_*
@@ -1659,7 +1659,7 @@
 	 * If turned off, the display may be wide when viewing the text
 	 * @global int $g_wrap_in_preformatted_text
 	 */
-	$g_wrap_in_preformatted_text = ON;
+	$g_wrap_in_preformatted_text = OFF;
 
 	/************************
 	 * MantisBT HR Settings *
@@ -1987,19 +1987,19 @@
 	 * Enable or disable usage of the ETA field.
 	 * @global int $g_enable_eta
 	 */
-	$g_enable_eta = OFF;
+	$g_enable_eta = ON;
 
 	/**
 	 * Enable or disable usage of the Projection field.
 	 * @global int $g_enable_projection
 	 */
-	$g_enable_projection = OFF;
+	$g_enable_projection = ON;
 
 	/**
 	 * Enable or disable usage of the Product Build field.
 	 * @global int $g_enable_product_build
 	 */
-	$g_enable_product_build = OFF;
+	$g_enable_product_build = ON;
 
 	/**
 	 * An array of the fields to show on the bug report page.
