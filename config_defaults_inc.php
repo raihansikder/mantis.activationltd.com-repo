@@ -3646,7 +3646,7 @@
 	 * Enable Profiles
 	 * @global int $g_enable_profiles
 	 */
-	$g_enable_profiles = ON;
+	$g_enable_profiles = OFF;
 
 	/**
 	 * Add profile threshold
@@ -3731,13 +3731,13 @@
 	 * threshold to update due date submitted
 	 * @global int $g_due_date_update_threshold
 	 */
-	$g_due_date_update_threshold = NOBODY;
+	$g_due_date_update_threshold = DEVELOPER;
 
 	/**
 	 * threshold to see due date
 	 * @global int $g_due_date_view_threshold
 	 */
-	$g_due_date_view_threshold = NOBODY;
+	$g_due_date_view_threshold = DEVELOPER;
 
 	/*****************
 	 * Sub-projects
