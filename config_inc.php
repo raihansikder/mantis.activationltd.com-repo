@@ -14,4 +14,8 @@
 	 * @global int $g_auto_set_status_to_assigned
 	 */
 	$g_auto_set_status_to_assigned	= OFF;
+	/*
+	* 
+	*/
+	$g_roadmap_update_threshold = VIEWER;
 ?>
