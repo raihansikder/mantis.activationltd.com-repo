@@ -18,4 +18,10 @@
 	* 
 	*/
 	$g_roadmap_update_threshold = VIEWER;
+	
+	/**
+	 * access level needed to assign bugs to unreleased product versions
+	 * @global int $g_report_issues_for_unreleased_versions_threshold
+	 */
+	$g_report_issues_for_unreleased_versions_threshold = VIEWER;
 ?>
