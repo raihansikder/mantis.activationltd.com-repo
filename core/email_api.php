@@ -1218,12 +1218,43 @@ function email_format_bug_message( $p_visible_bug_data ) {
 	$p_visible_bug_data['email_priority'] = get_enum_element( 'priority', $p_visible_bug_data['email_priority'] );
 	$p_visible_bug_data['email_reproducibility'] = get_enum_element( 'reproducibility', $p_visible_bug_data['email_reproducibility'] );
 
+	
+	
 	$t_message = $t_email_separator1 . " \n";
+	# format bugnotes
+	foreach( $p_visible_bug_data['bugnotes'] as $t_bugnote ) {
+		$t_last_modified = date( $t_normal_date_format, $t_bugnote->last_modified );
+
+		$t_formatted_bugnote_id = bugnote_format_id( $t_bugnote->id );
+		$t_bugnote_link = string_process_bugnote_link( config_get( 'bugnote_link_tag' ) . $t_bugnote->id, false, false, true );
+
+		if( $t_bugnote->time_tracking > 0 ) {
+			$t_time_tracking = ' ' . lang_get( 'time_tracking' ) . ' ' . db_minutes_to_hhmm( $t_bugnote->time_tracking ) . "\n";
+		} else {
+			$t_time_tracking = '';
+		}
+
+		if( user_exists( $t_bugnote->reporter_id ) ) {
+			$t_access_level = access_get_project_level( $p_visible_bug_data['email_project_id'] , $t_bugnote->reporter_id );
+			$t_access_level_string = ' (' . get_enum_element( 'access_levels', $t_access_level ) . ') - ';
+		} else {
+			$t_access_level_string = '';
+		}
+
+		$t_string = ' (' . $t_formatted_bugnote_id . ') ' . user_get_name( $t_bugnote->reporter_id ) . $t_access_level_string . $t_last_modified . "\n" . $t_time_tracking . ' ' . $t_bugnote_link;
+
+		$t_message .= $t_email_separator2 . " \n";
+		$t_message .= $t_string . " \n";
+		$t_message .= $t_email_separator2 . " \n";
+		$t_message .= $t_bugnote->note . " \n\n";
+	}
 
 	if( isset( $p_visible_bug_data['email_bug_view_url'] ) ) {
 		$t_message .= $p_visible_bug_data['email_bug_view_url'] . " \n";
 		$t_message .= $t_email_separator1 . " \n";
 	}
+	
+	
 
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_reporter' );
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_handler' );
@@ -1293,33 +1324,7 @@ function email_format_bug_message( $p_visible_bug_data ) {
 
 	$t_message .= $t_email_separator1 . " \n\n";
 
-	# format bugnotes
-	foreach( $p_visible_bug_data['bugnotes'] as $t_bugnote ) {
-		$t_last_modified = date( $t_normal_date_format, $t_bugnote->last_modified );
-
-		$t_formatted_bugnote_id = bugnote_format_id( $t_bugnote->id );
-		$t_bugnote_link = string_process_bugnote_link( config_get( 'bugnote_link_tag' ) . $t_bugnote->id, false, false, true );
-
-		if( $t_bugnote->time_tracking > 0 ) {
-			$t_time_tracking = ' ' . lang_get( 'time_tracking' ) . ' ' . db_minutes_to_hhmm( $t_bugnote->time_tracking ) . "\n";
-		} else {
-			$t_time_tracking = '';
-		}
-
-		if( user_exists( $t_bugnote->reporter_id ) ) {
-			$t_access_level = access_get_project_level( $p_visible_bug_data['email_project_id'] , $t_bugnote->reporter_id );
-			$t_access_level_string = ' (' . get_enum_element( 'access_levels', $t_access_level ) . ') - ';
-		} else {
-			$t_access_level_string = '';
-		}
-
-		$t_string = ' (' . $t_formatted_bugnote_id . ') ' . user_get_name( $t_bugnote->reporter_id ) . $t_access_level_string . $t_last_modified . "\n" . $t_time_tracking . ' ' . $t_bugnote_link;
-
-		$t_message .= $t_email_separator2 . " \n";
-		$t_message .= $t_string . " \n";
-		$t_message .= $t_email_separator2 . " \n";
-		$t_message .= $t_bugnote->note . " \n\n";
-	}
+	
 
 	# format history
 	if( array_key_exists( 'history', $p_visible_bug_data ) ) {
