@@ -1218,8 +1218,6 @@ function email_format_bug_message( $p_visible_bug_data ) {
 	$p_visible_bug_data['email_priority'] = get_enum_element( 'priority', $p_visible_bug_data['email_priority'] );
 	$p_visible_bug_data['email_reproducibility'] = get_enum_element( 'reproducibility', $p_visible_bug_data['email_reproducibility'] );
 
-	
-	
 	$t_message = $t_email_separator1 . " \n";
 	# format bugnotes
 	foreach( $p_visible_bug_data['bugnotes'] as $t_bugnote ) {
@@ -1254,8 +1252,6 @@ function email_format_bug_message( $p_visible_bug_data ) {
 		$t_message .= $t_email_separator1 . " \n";
 	}
 	
-	
-
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_reporter' );
 	$t_message .= email_format_attribute( $p_visible_bug_data, 'email_handler' );
 	$t_message .= $t_email_separator1 . " \n";
@@ -1325,7 +1321,6 @@ function email_format_bug_message( $p_visible_bug_data ) {
 	$t_message .= $t_email_separator1 . " \n\n";
 
 	
-
 	# format history
 	if( array_key_exists( 'history', $p_visible_bug_data ) ) {
 		$t_message .= lang_get( 'bug_history' ) . " \n";
