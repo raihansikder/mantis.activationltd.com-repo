@@ -24,4 +24,20 @@
 	 * @global int $g_report_issues_for_unreleased_versions_threshold
 	 */
 	$g_report_issues_for_unreleased_versions_threshold = VIEWER;
+	
+	/**
+	 * email separator and padding
+	 * @global string $g_email_separator1
+	 */
+	$g_email_separator1		= str_pad('', 20, '=');
+	/**
+	 * email separator and padding
+	 * @global string $g_email_separator2
+	 */
+	$g_email_separator2		= str_pad('', 20, '-');
+	/**
+	 * email separator and padding
+	 * @global int $g_email_padding_length
+	 */
+	$g_email_padding_length	= 28;
 ?>
